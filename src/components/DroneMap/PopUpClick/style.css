@@ -1,0 +1,9 @@
+#fix-button {
+  margin: auto;
+}
+
+.command-popup {
+  display: block;
+  margin: 0 auto;
+  text-align: center;
+}
