@@ -1,6 +1,6 @@
 // src/components/DroneMap/index.js
 import React, {PropTypes, Component } from 'react';
-import { Map, TileLayer } from 'react-leaflet';
+import { Map, TileLayer, Marker, Popup, CircleMarker, Tooltip } from 'react-leaflet';
 import classnames from 'classnames';
 import PopUpClick from './PopUpClick';
 import PathMarker from './PathDrawer';
@@ -13,17 +13,28 @@ export default class DroneMap extends Component {
     super();
     this.state = {
       showPopUp: false,
-      posPopUp: centerMap
+      cursorMarker: centerMap,
+      markerId: 1,
+      markerList: []
     };
     this.onClickMap = this.onClickMap.bind(this);
+    this.fixPoint = this.fixPoint.bind(this);
   }
 
   onClickMap(event){
-    let pos = [event.latlng.lat, event.latlng.lng];
+    let position = [event.latlng.lat, event.latlng.lng];
     this.setState((prevState, props) => ({
-      posPopUp: pos
+      cursorMarker: position
     }));
   }
+
+  fixPoint(){
+    this.setState((prevState, props) => ({
+      markerList: [ ...prevState.markerList, { pos: prevState.cursorMarker, id: prevState.markerId++ }],
+      markerId: prevState.markerId++
+    })
+  );
+}
 
   render(){
     return (
@@ -32,7 +43,27 @@ export default class DroneMap extends Component {
             url='http://{s}.tile.osm.org/{z}/{x}/{y}.png'
             attribution='&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           />
-          <PopUpClick position={this.state.posPopUp} />
+          <Marker position={this.state.cursorMarker}>
+            <Popup>
+              <div className="commad-popup">
+                <p>Move to here?</p>
+                <button onClick={this.fixPoint} id="fix-button">固定する</button>
+              </div>
+            </Popup>
+          </Marker>
+          { this.state.markerList.map(coord =>
+            <div key={coord.id}>
+              <CircleMarker center={coord.pos} radius={5} title='toto' alt='tata'>
+                <Popup>
+                  <span>{coord.id}</span>
+                </Popup>
+              </CircleMarker>
+            </div>
+            )
+          }
+
+          }
+
         </Map>
     );
   }
