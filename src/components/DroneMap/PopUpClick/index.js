@@ -8,7 +8,6 @@ import './style.css';
 export default class PopUpClick extends Component {
   constructor(){
       super();
-      this.fixPoint = this.fixPoint.bind(this);
     }
 
   componentDidMount() {
@@ -17,16 +16,13 @@ export default class PopUpClick extends Component {
   componentWillUnmount() {
   }
 
-  fixPoint(){
-  }
-
   render(props){
     return (
-      <Marker position={this.props.position} draggable={true}>
+      <Marker position={this.props.position}>
         <Popup>
           <div className="commad-popup">
             <p>Move to here?</p>
-            <button onClick={this.fixPoint} id="fix-button">固定する</button>
+            <button onClick={this.props.fixNewMarker} id="fix-button">固定する</button>
           </div>
         </Popup>
       </Marker>
