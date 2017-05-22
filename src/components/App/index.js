@@ -4,9 +4,6 @@ import logo from './logo.svg';
 import './style.css';
 
 class App extends Component {
-  // static propTypes = {}
-  // static defaultProps = {}
-  // state = {}
 
   render() {
     return (

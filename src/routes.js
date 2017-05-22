@@ -1,11 +1,12 @@
 // src/routes.js
-import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
-import App from './components/App';
-import About from './components/About';
-import DroneMap from './components/DroneMap';
-import NotFound from './components/NotFound';
+import React from 'react'
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+
+import App from './components/App'
+import About from './components/About'
+import VisibleDroneMap from './containers/VisibleDroneMap'
+import NotFound from './components/NotFound'
 
 
 const Routes = () => (
@@ -13,7 +14,7 @@ const Routes = () => (
       <Switch>
         <Route exact path="/" component={App}/>
         <Route path="/about" component={About}/>
-        <Route path="/drone-map" component={DroneMap}/>
+        <Route path="/drone-map" component={VisibleDroneMap}/>
         <Route path="*" component={NotFound}/>
       </Switch>
     </Router>
