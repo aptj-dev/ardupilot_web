@@ -34,7 +34,7 @@ export function removeStep(stepId) {
 
 export function fetchPosition() {
     return dispatch => {
-	return fetch('http://localhost:3000/drones/1/get_drone_position')
+	return fetch('http://localhost:3000/v1/drones/1/get_drone_position')
     	    .then(response => response.json())
     	    .then(json => dispatch(updatePosition(json)))
 	    .catch((err) => console.log(err))

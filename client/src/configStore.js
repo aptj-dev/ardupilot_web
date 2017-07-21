@@ -1,4 +1,4 @@
-// src/index.js
+// src/configStore.js
 
 import React from 'react';
 import ReactDOM from 'react-dom';
