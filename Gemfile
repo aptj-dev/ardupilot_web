@@ -34,7 +34,7 @@ gem 'jbuilder', '~> 2.5'
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-gem 'rack-cors', :require => 'rack/cors'
+gem 'rack-cors'
 
 gem 'active_model_serializers', '~> 0.10.0'
 
@@ -42,12 +42,23 @@ gem 'devise_token_auth'
 
 gem 'omniauth'
 
+# Use ActiveModel has_secure_password
+gem 'bcrypt'
+
+gem 'rack-ssl', require: 'rack/ssl'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
 end
 
 group :development do
+  gem 'capistrano', '~> 3.6'
+  gem 'capistrano-rails', '~> 1.1'
+  gem 'capistrano-rvm'
+  gem 'capistrano3-puma'
+  gem 'capistrano3-nginx'
+  gem 'capistrano-upload-config'
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'web-console', '>= 3.3.0'
   gem 'listen', '~> 3.0.5'

@@ -11,8 +11,8 @@ export default class CursorDrone extends Component {
     }
    
     render() {
-	let icon = new Icon ({iconUrl: 'https://d30y9cdsu7xlg0.cloudfront.net/png/156824-200.png', iconSize: [40, 40]})
 	if (typeof this.props.dronePosition !== 'undefined'){
+	    let icon = new Icon ({iconUrl: 'https://d30y9cdsu7xlg0.cloudfront.net/png/156824-200.png', iconSize: [40, 40]})
 	    return (
 		    <Marker position={this.props.dronePosition} icon={icon}>
 		    </Marker>

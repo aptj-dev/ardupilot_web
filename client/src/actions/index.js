@@ -1,9 +1,7 @@
-import fetch from 'isomorphic-fetch'
+// src/actions/index.js
 
-export const ADD_STEP = 'ADD_STEP'
-export const SET_CURSOR_POSITION  = 'SET_CURSOR_POSITION'
-export const REMOVE_STEP = 'REMOVE_STEP'
-export const UPDATE_POSITION = 'UPDATE_POSITION'
+import fetch from 'isomorphic-fetch'
+import * as ActionTypes from './actionTypes'
 
 export function addStep() {
   return {
@@ -34,7 +32,7 @@ export function removeStep(stepId) {
 
 export function fetchPosition() {
     return dispatch => {
-	return fetch('http://localhost:3000/v1/drones/1/get_drone_position')
+	return fetch('https://localhost/v1/drones/1/get_drone_position.json')
     	    .then(response => response.json())
     	    .then(json => dispatch(updatePosition(json)))
 	    .catch((err) => console.log(err))
